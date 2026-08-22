@@ -42,10 +42,17 @@ if not claude_bin:
 if not claude_bin:
     sys.exit(0)
 
-# Update custom marketplaces so the local cache is fresh before installing
+# Register + refresh custom marketplaces before installing.
+# `marketplace add` is idempotent; must come before `marketplace update`.
 official = {"claude-plugins-official"}
 custom_markets = {p.split("@")[1] for p in missing if "@" in p and p.split("@")[1] not in official}
+mkt_sources = pm.get("marketplaces", {})
 for mkt in custom_markets:
+    src = mkt_sources.get(mkt, {}).get("source", {})
+    if src.get("source") == "github" and src.get("repo"):
+        url = f"https://github.com/{src['repo']}.git"
+        subprocess.run([claude_bin, "plugin", "marketplace", "add", url],
+                       capture_output=True, timeout=120)
     subprocess.run([claude_bin, "plugin", "marketplace", "update", mkt],
                    capture_output=True, timeout=60)
 
