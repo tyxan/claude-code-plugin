@@ -1,0 +1,13 @@
+{
+  "name": "oversite",
+  "version": "1.0.0",
+  "description": "Over Site team brain integration — /brain-log, /brain-search, and /session-report skills for all team machines.",
+  "author": {
+    "name": "Over Site Sp. z o.o.",
+    "email": "will.evans@over.site"
+  },
+  "homepage": "https://github.com/tyxan/claude-code-plugin",
+  "repository": "https://github.com/tyxan/claude-code-plugin",
+  "license": "UNLICENSED",
+  "keywords": ["brain", "memory", "team", "oversite", "aisignaldata"]
+}

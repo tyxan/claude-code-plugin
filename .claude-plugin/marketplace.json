@@ -1,0 +1,21 @@
+{
+  "name": "tyxan",
+  "metadata": {
+    "description": "Over Site internal Claude Code plugins"
+  },
+  "owner": {
+    "name": "Over Site Sp. z o.o."
+  },
+  "plugins": [
+    {
+      "name": "oversite",
+      "description": "Team brain integration — /brain-log, /brain-search, /session-report",
+      "author": {
+        "name": "Over Site Sp. z o.o."
+      },
+      "source": "./",
+      "category": "productivity",
+      "homepage": "https://github.com/tyxan/claude-code-plugin"
+    }
+  ]
+}
