@@ -42,6 +42,13 @@ if not claude_bin:
 if not claude_bin:
     sys.exit(0)
 
+# Update custom marketplaces so the local cache is fresh before installing
+official = {"claude-plugins-official"}
+custom_markets = {p.split("@")[1] for p in missing if "@" in p and p.split("@")[1] not in official}
+for mkt in custom_markets:
+    subprocess.run([claude_bin, "plugin", "marketplace", "update", mkt],
+                   capture_output=True, timeout=60)
+
 for plugin in missing:
     subprocess.run([claude_bin, "plugin", "install", plugin],
                    capture_output=True, timeout=120)
