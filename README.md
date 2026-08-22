@@ -16,7 +16,7 @@ This plugin is managed via `~/claude-memory/sync.sh`. Running `sync.sh pull` on 
 
 Manual install (if needed):
 ```
-claude plugin add oversite@tyxan
+claude plugin install oversite@tyxan
 ```
 
 Requires the `tyxan` marketplace to be in `~/.claude/settings.json`:
@@ -47,4 +47,4 @@ skills/
 
 ## Maintenance
 
-Changes to skills take effect on all machines on Claude Code's next auto-update cycle (typically within minutes of a push to main).
+Changes to skills take effect on all machines on Claude Code's next auto-update cycle (typically within minutes of a push to master).

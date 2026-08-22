@@ -5,10 +5,8 @@
 # Fast no-op if everything is already installed.
 
 PLUGINS_JSON="$HOME/claude-memory/plugins.json"
-INSTALLED_JSON="$HOME/.claude/plugins/installed_plugins.json"
 
-[ -f "$PLUGINS_JSON" ]   || exit 0
-[ -f "$INSTALLED_JSON" ] || exit 0
+[ -f "$PLUGINS_JSON" ] || exit 0
 
 python3 - <<'PYEOF'
 import json, os, shutil, subprocess, sys
@@ -20,10 +18,15 @@ installed_path = f"{home}/.claude/plugins/installed_plugins.json"
 try:
     with open(plugins_path) as f:
         pm = json.load(f)
+except Exception:
+    sys.exit(0)
+
+# If installed_plugins.json is missing, treat as no plugins installed
+try:
     with open(installed_path) as f:
         installed_keys = set(json.load(f).get("plugins", {}).keys())
 except Exception:
-    sys.exit(0)
+    installed_keys = set()
 
 required = pm.get("enabledPlugins", [])
 missing  = [p for p in required if p not in installed_keys]
