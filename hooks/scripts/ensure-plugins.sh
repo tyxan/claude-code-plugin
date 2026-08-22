@@ -40,6 +40,6 @@ if not claude_bin:
     sys.exit(0)
 
 for plugin in missing:
-    subprocess.run([claude_bin, "plugin", "add", plugin],
+    subprocess.run([claude_bin, "plugin", "install", plugin],
                    capture_output=True, timeout=120)
 PYEOF
